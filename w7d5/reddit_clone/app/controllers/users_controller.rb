@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
         if @user.save
             login(@user)
-            render :show
+            redirect_to user_url(@user)
         else
 
             flash.now["errors"] = ["Invalid username or password"]
@@ -24,6 +24,7 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find_by(id: params[:id])
+        @post = Post.new
         render :show
     end
 

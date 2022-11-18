@@ -12,17 +12,31 @@ class PostsController < ApplicationController
     def create
         if logged_in?
             @post = Post.new(post_params)
-            @post.author_id = params[:author_id]
-
+            @post.author_id = current_user.id
+            @user = User.find_by(id: current_user.id)
             if @post.save
                 render :show
             else
-                flash.now["errors"]= ["needs a title"]
-                render :new
+                flash.now["errors"]= @post.errors.full_messages
+                
+                render "/users/show"
             end
         else
             redirect_to new_session_url
         end
+    end
+
+    def edit
+        @post = Post.find_by(id: params[:id])
+        render :edit
+
+
+    end
+
+
+    def update
+
+
     end
 
 
