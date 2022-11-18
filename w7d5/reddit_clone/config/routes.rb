@@ -6,4 +6,11 @@ Rails.application.routes.draw do
 
   resources :users
   resource :session
+  resources :users do
+    resources :posts, only: [:edit, :update]
+  end
+
+  resources :posts, except: :index
+
+  resources :subs
 end

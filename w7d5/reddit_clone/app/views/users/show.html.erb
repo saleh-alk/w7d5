@@ -1,0 +1,26 @@
+<h1>Hi <%= @user.username%></h1>
+
+
+<h2>New Post</h2>
+
+
+<h1>Create new Post</h1>
+
+
+<form action="<%=user_post_url%>" method= "POST">
+    <label>Title
+    <input type="text" name="post[title]" value= "<%=@post.title%>">
+    </label>
+
+    <label>Url
+    <input type="text" name="post[title]" value= "<%=@post.url if @post.url%>">
+    </label>
+
+     <label>Content
+    <input type="text" name="post[title]" value= "<%=@post.content if @post.content%>">
+    </label>
+
+
+
+
+</form>
