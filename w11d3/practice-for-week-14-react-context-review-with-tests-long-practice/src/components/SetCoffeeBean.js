@@ -1,13 +1,20 @@
+import { useCoffeeContext } from "../context/CoffeeContext";
+
 const SetCoffeeBean = ({ coffeeBeans }) => {
+
+  const {coffeeBean, setCoffeeBeanId} = useCoffeeContext();
+
   return (
     <div className="set-coffee-bean">
       <h2>Select a Coffee Bean</h2>
       <select
         name="coffee-bean"
+        onChange={(e)=>{setCoffeeBeanId(e.target.value)}}
+        value={coffeeBean.id}
       >
         {coffeeBeans.map(bean => (
           <option
-            key={bean.id}
+            key={bean.id} //this is so we don't get the react error
             value={bean.id}
           >
             {bean.name}
